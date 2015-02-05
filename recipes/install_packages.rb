@@ -23,10 +23,6 @@ if platform_family?('suse')
 elsif platform_family?('debian')
   package "mono-complete"
 elsif platform_family?('rhel')
-  yum_repository 'mono' do
-    description "Mono repository"
-    baseurl node['mono']['yum_repository']
-    gpgkey node['mono']['yum_repository_key']
-  end
+  include_recipe "mono::add_centos_repo"
   package "mono-complete"
 end

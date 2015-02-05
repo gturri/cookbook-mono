@@ -25,8 +25,12 @@ include_recipe "mono::libgdiplus"
 
 installation_dir = "/usr/local/src/mono"
 
-packages = value_for_platform(
+packages = value_for_platform({
+    [:centos, :redhat] => {
+    "default" => [ 'autoconf', 'automake', 'libtool', 'gettext']
+    },
     "default" => [ 'zlib1g-dev', 'autoconf', 'automake', 'libtool', 'gettext']
+    }
   )
 
 packages.each do |devpkg|
